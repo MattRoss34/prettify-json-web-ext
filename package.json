@@ -1,8 +1,8 @@
 {
-  "name": "@webdeveric/kibana-plus-web-ext",
-  "version": "0.10.0",
+  "name": "@mattross34/prettify-json-web-ext",
+  "version": "0.1.0",
   "private": true,
-  "description": "Kibana Plus web extension",
+  "description": "Prettify JSON web extension",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint ./*.js ./src --ext .ts --ext .js --fix",
@@ -12,7 +12,7 @@
     "prebuild": "npm run spellcheck && npm run lint",
     "build": "NODE_ENV=production webpack",
     "postbuild": "npm run web-ext && web-ext lint",
-    "start": "web-ext run",
+    "start": "web-ext run -t chromium",
     "start:both": "web-ext run -t firefox-desktop -t chromium",
     "presign": "npm run build",
     "sign": "web-ext sign",
@@ -22,17 +22,19 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/webdeveric/kibana-plus-web-ext.git"
+    "url": "https://github.com/MattRoss34/prettify-json-web-ext.git"
   },
   "bugs": {
-    "url": "https://github.com/webdeveric/kibana-plus-web-ext/issues"
+    "url": "https://github.com/MattRoss34/prettify-json-web-ext/issues"
   },
-  "homepage": "https://github.com/webdeveric/kibana-plus-web-ext",
+  "homepage": "https://github.com/MattRoss34/prettify-json-web-ext",
   "keywords": [
-    "Kibana",
+    "Prettify",
+    "Prettier",
+    "Pretty",
     "JSON"
   ],
-  "author": "Eric King <eric@webdeveric.com>",
+  "author": "Matt Ross",
   "devDependencies": {
     "@types/mini-css-extract-plugin": "^2.0.1",
     "@types/node": "^18.6.1",

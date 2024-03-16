@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
-  "name": "Kibana Plus",
-  "version": "0.10.0",
-  "description": "Kibana + pretty JSON output",
+  "name": "Prettify JSON",
+  "version": "1.0.0",
+  "description": "Prettify any JSON string on a webpage for easy reading.",
   "browser_specific_settings": {
     "gecko": {
       "id": "{bbef878a-de01-414f-b2fe-fd736c32caa1}"
@@ -21,7 +21,7 @@
   },
   "browser_action": {
     "default_icon": "icons/inactive.svg",
-    "default_title": "Kibana Plus"
+    "default_title": "Prettify JSON"
   },
   "web_accessible_resources": [
     "assets-manifest.json",

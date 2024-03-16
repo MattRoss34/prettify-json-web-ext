@@ -105,7 +105,7 @@ const config = {
       meta: {
         viewport: false,
       },
-      title: 'Kibana ➕ background script',
+      title: 'Prettify JSON ➕ background script',
     }),
     new CopyPlugin({
       patterns: [

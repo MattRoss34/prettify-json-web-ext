@@ -1,8 +1,8 @@
-# Kibana ➕
+# Prettify JSON ➕
 
-This web extension modifies the output from Kibana to pretty print the JSON fields.
+This web extension modifies the output from web pages to pretty print the JSON fields.
 
-This extension is a rewrite of [kibana-plus-chrome-extension](https://github.com/kirill578/kibana-plus-chrome-extension) so that it works in Firefox and Chrome.
+This extension is a rewrite of [kibana-plus-web-ext](https://github.com/webdeveric/kibana-plus-web-ext).
 
 ## Local development
 
@@ -12,7 +12,7 @@ This extension is a rewrite of [kibana-plus-chrome-extension](https://github.com
 cp .env.example .env
 ```
 
-Set `KIBANA_URL` to the URl of your Kibana site. This will let `web-ext` know which site to open automatically when it starts.
+Set `KIBANA_URL` to the URl of your K site. This will let `web-ext` know which site to open automatically when it starts.
 
 ### Development
 

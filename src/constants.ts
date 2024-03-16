@@ -25,6 +25,6 @@ export enum Emoji {
   HourGlassDone = '⌛',
 }
 
-export const kibanaPlus = `Kibana ${Emoji.PlusSign}`;
+export const prettifyJson = 'Prettify JSON';
 
-export const kibanaPlusPrettyJsonClassName = 'kibana-plus-pretty-json';
+export const prettifyJsonClassName = 'prettify-json';

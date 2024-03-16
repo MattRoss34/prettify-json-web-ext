@@ -12,6 +12,7 @@
         "entrypoints",
         "esnext",
         "kibana",
+        "mattross",
         "noopener",
         "noreferrer",
         "postbuild",

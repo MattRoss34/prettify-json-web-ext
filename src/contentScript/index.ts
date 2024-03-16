@@ -1,15 +1,15 @@
 import {
-  Emoji, kibanaPlus, kibanaPlusPrettyJsonClassName, ReadyStates,
+  Emoji, prettifyJson, prettifyJsonClassName, ReadyStates,
 } from '../constants';
 import { findElements } from './elements';
 import { processElement } from './process';
 
 // The background script checks for this value so it does not insert multiple of this script.
-window.KibanaPlus = window.KibanaPlus || {
+window.PrettifyJson = window.PrettifyJson || {
   loaded: true,
   async copyElementText( target: Element ) : Promise<boolean | Record<string, any>> {
     if ( target ) {
-      const element = target.closest(`.${kibanaPlusPrettyJsonClassName}`);
+      const element = target.closest(`.${prettifyJsonClassName}`);
 
       if ( element ) {
         try {
@@ -36,7 +36,7 @@ window.KibanaPlus = window.KibanaPlus || {
 function info( message: string ) : void
 {
   console.info(
-    `%c${kibanaPlus} ${message}`,
+    `%c${prettifyJson} ${message}`,
     `
       display: inline-block;
       background: linear-gradient(to bottom, #42CAF4 0%, #3CAED2 100%);

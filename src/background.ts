@@ -5,7 +5,7 @@ import browser, {
 } from 'webextension-polyfill';
 
 import {
-  Emoji, kibanaPlus, TabStatus, 
+  Emoji, prettifyJson, TabStatus, 
 } from './constants';
 import {
   getAllPermissions,
@@ -29,7 +29,7 @@ const contentScriptAssets: Record<'css' | 'js', string[]> = {
 
 async function contentScriptHasLoaded(tabId: number): Promise<boolean> {
   const [ hasLoaded ] = await browser.tabs.executeScript(tabId, {
-    code: '!! window?.KibanaPlus?.loaded;',
+    code: '!! window?.PrettifyJson?.loaded;',
   });
 
   console.log(`Tab ${tabId} has existing content script: ${hasLoaded}`);
@@ -38,7 +38,7 @@ async function contentScriptHasLoaded(tabId: number): Promise<boolean> {
 }
 
 async function useContentScript(tabId: number): Promise<void> {
-  console.log(`Loading ${kibanaPlus} content script in tab ${tabId}`);
+  console.log(`Loading ${prettifyJson} content script in tab ${tabId}`);
 
   const hasLoaded = await contentScriptHasLoaded(tabId);
 
@@ -224,7 +224,7 @@ async function init(): Promise<void> {
 
   await setIconForTabs(tabs);
 
-  console.info(`${kibanaPlus} background script initialized ${Emoji.ThumbsUp}`);
+  console.info(`${prettifyJson} background script initialized ${Emoji.ThumbsUp}`);
 }
 
 async function onStartup(): Promise<void> {
@@ -248,7 +248,7 @@ browser.contextMenus.onClicked.addListener(
     if (tab && info.menuItemId == 'copy-json') {
       const [ copied ] = await browser.tabs.executeScript(tab.id, {
         frameId: info.frameId,
-        code: `window?.KibanaPlus?.copyElementText( browser.menus.getTargetElement(${info.targetElementId}) );`,
+        code: `window?.PrettifyJson?.copyElementText( browser.menus.getTargetElement(${info.targetElementId}) );`,
       });
 
       console.groupCollapsed(`Menu item clicked: ${info.menuItemId}`);
@@ -277,7 +277,7 @@ browser.runtime.onStartup.addListener(onStartup);
 browser.runtime.onInstalled.addListener(onInstalled);
 browser.runtime
   .setUninstallURL(
-    'https://webdeveric.github.io/kibana-plus-web-ext/uninstalled.html',
+    'https://mattross34.github.io/prettify-json-web-ext/uninstalled.html',
   )
   .catch(error => console.error(error));
 
