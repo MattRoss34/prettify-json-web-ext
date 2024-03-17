@@ -64,15 +64,14 @@ function looksLikeKibana() : boolean
   return document.querySelector('body')?.getAttribute('id') === 'kibana-body';
 }
 
-function init() : void
+function looksLikeOpenSearch() : boolean
 {
-  if ( ! looksLikeKibana() ) {
-    info('This doesn\'t look like a Kibana page');
+  return Boolean(document.querySelector('title')?.innerText.includes('OpenSearch'));
+}
 
-    return;
-  }
-
-  info(`initializing ${Emoji.HourGlassNotDone}`);
+function initKibana() : void
+{
+  info(`initializing Kibana ${Emoji.HourGlassNotDone}`);
 
   const subjectsSelector: string = [
     'event',
@@ -129,7 +128,82 @@ function init() : void
     document.querySelectorAll(`:-webkit-any(${subjectsSelector}) .doc-viewer-value > span`).forEach( span => intersection.observe( span ) );
   }
 
-  info(`initialized ${Emoji.Horns}`);
+  info(`initialized Kibana ${Emoji.Horns}`);
+}
+
+function initOpenSearch() : void
+{
+  info(`initializing OpenSearch ${Emoji.HourGlassNotDone}`);
+
+  const subjectsSelector: string = [
+    'event',
+    'message',
+    'lambda_json_blob',
+    'logEvents.extractedFields.event',
+    'logEvents.message',
+    'data.payload.attributes',
+    'eventData',
+    'eventParams',
+    'requestData',
+    'graphQlResponse',
+    'restResponse',
+    'msg',
+    'customContext.errorContext',
+  ].map((subject: string): string => `div[data-test-subj="tableDocViewRow-${subject}-value"]`).join(',');
+
+  const intersection = new IntersectionObserver(
+    (entries: IntersectionObserverEntry[], observer: IntersectionObserver) : void => {
+      entries
+        .filter( entry => entry.isIntersecting )
+        .forEach( entry => {
+          observer.unobserve( entry.target );
+
+          processElement( entry.target );
+        });
+    },
+    {
+      root: null,
+      rootMargin: '100px 0px 100px 0px',
+      threshold: 0,
+    },
+  );
+
+  const mutation = new MutationObserver( (mutations: MutationRecord[]) => {
+    findElements( mutations, 'tr[data-test-subj="docTableDetailsRow"]').forEach( (element: Element) : void => {
+      element.querySelectorAll(subjectsSelector).forEach(subject => intersection.observe(subject));
+    });
+  });
+
+  mutation.observe(document, {
+    subtree: true,
+    attributes: true,
+    childList: true,
+    attributeFilter: [ 'data-test-subj' ],
+  });
+
+  try {
+    // Process any elements that are already showing.
+    document.querySelectorAll(`:is(${subjectsSelector})`).forEach( div => intersection.observe( div ) );
+  } catch (error) {
+    // Chrome may throw an error when using ":is" since it is behind the
+    // #enable-experimental-web-platform-features preference in chrome://flags.
+    document.querySelectorAll(`:-webkit-any(${subjectsSelector})`).forEach( div => intersection.observe( div ) );
+  }
+
+  info(`initialized OpenSearch ${Emoji.Horns}`);
+}
+
+function init() : void
+{
+  if ( looksLikeKibana() ) {
+    initKibana();
+  } else if (looksLikeOpenSearch()) {
+    initOpenSearch();
+  } else {
+    info('This doesn\'t look like a Kibana or OpenSearch page');
+
+    return;
+  }
 }
 
 info(`content script loaded ${Emoji.ThumbsUp}`);

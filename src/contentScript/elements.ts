@@ -1,13 +1,17 @@
 import { getValidUrl } from './url';
 
-export function findElements( mutations: MutationRecord[], selector: string ) : Element[]
+export function findElements( mutations: MutationRecord[], selector: string, nextSibling = false) : Element[]
 {
   return mutations.reduce(
     (data: Element[], record: MutationRecord) => {
       const { target } = record;
 
       if ( target instanceof Element && target.matches( selector ) ) {
-        data.push(target);
+        if (nextSibling && target.nextElementSibling != null) {
+          data.push(target.nextElementSibling);
+        } else {
+          data.push(target);
+        }
       }
 
       return data;

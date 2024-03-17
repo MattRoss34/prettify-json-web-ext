@@ -80,15 +80,8 @@ export function processElement( element: Element ) : void
     );
 
     if ( fragment.childNodes.length ) {
-      const container = element.cloneNode() as Element;
-
-      container.appendChild( fragment );
-
-      container.normalize();
-
-      container.classList.add( styles.container );
-
-      element.replaceWith( container );
+      element.replaceChildren(fragment);
+      element.classList.add(styles.container);
     }
   }
 }
