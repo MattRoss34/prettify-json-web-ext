@@ -4,8 +4,8 @@ require('dotenv').config();
 
 const startUrl = [ 'about:devtools-toolbox?type=extension&id=%7Bbbef878a-de01-414f-b2fe-fd736c32caa1%7D' ];
 
-if ( process.env.KIBANA_URL ) {
-  startUrl.push( process.env.KIBANA_URL );
+if ( process.env.TEST_URL ) {
+  startUrl.push( process.env.TEST_URL );
 }
 
 module.exports = {

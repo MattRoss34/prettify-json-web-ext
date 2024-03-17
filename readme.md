@@ -12,7 +12,7 @@ This extension is a rewrite of [kibana-plus-web-ext](https://github.com/webdever
 cp .env.example .env
 ```
 
-Set `KIBANA_URL` to the URl of your K site. This will let `web-ext` know which site to open automatically when it starts.
+Set `TEST_URL` to the URl of your Kibana or OpenSearch site. This will let `web-ext` know which site to open automatically when it starts.
 
 ### Development
 
