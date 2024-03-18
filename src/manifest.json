@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Prettify JSON",
   "version": "0.1.0",
-  "description": "Prettify any JSON string on a webpage for easy reading.",
+  "description": "Prettify JSON in Kibana and OpenSearch data for easy reading.",
   "browser_specific_settings": {
     "gecko": {
       "id": "{04f203d0-a384-4510-a044-6dd087b9cb03}"
