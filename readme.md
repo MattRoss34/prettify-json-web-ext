@@ -1,6 +1,6 @@
 # Prettify JSON ➕
 
-This web extension modifies the output from web pages to pretty print the JSON fields.
+This web extension prettifies the JSON fields in Kibana and OpenSearch.
 
 This extension is a rewrite of [kibana-plus-web-ext](https://github.com/webdeveric/kibana-plus-web-ext).
 
@@ -24,7 +24,7 @@ Run these in two different terminals.
   npm run dev
   ```
 
-- This runs `web-ext` and loads the extension in Firefox.
+- This runs `web-ext` and loads the extension in Chrome.
 
   ```shell
   npm start
