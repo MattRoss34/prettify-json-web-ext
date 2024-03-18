@@ -34,6 +34,6 @@ export function formatJson( unformattedJson: string ) : string
   return JSON.stringify(
     JSON.parse( unformattedJson ),
     replacer,
-    4,
+    3,
   ).normalize();
 }
