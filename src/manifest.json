@@ -5,7 +5,7 @@
   "description": "Prettify any JSON string on a webpage for easy reading.",
   "browser_specific_settings": {
     "gecko": {
-      "id": "{bbef878a-de01-414f-b2fe-fd736c32caa1}"
+      "id": "{04f203d0-a384-4510-a044-6dd087b9cb03}"
     }
   },
   "permissions": [
